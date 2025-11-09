@@ -7,7 +7,7 @@ const Reminders = () => {
   const [upcoming, setUpcoming] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/borrowers')
+    axios.get(`${import.meta.env.VITE_API_URL}/api/borrowers`)
       .then((res) => {
         setBorrowers(res.data);
 

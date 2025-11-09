@@ -53,7 +53,7 @@ const Borrowers = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this borrower?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/borrowers/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/borrowers/${id}`);
       setBorrowers(borrowers.filter((b) => b._id !== id));
     } catch (err) {
       console.error(err);
@@ -72,7 +72,7 @@ const Borrowers = () => {
         status: status
       };
       
-      await axios.post('http://localhost:5000/api/borrowers', borrowerData);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/borrowers`, borrowerData);
       alert('Borrower added successfully');
       setShowForm(false);
       setNewBorrower({
@@ -84,7 +84,7 @@ const Borrowers = () => {
         risk: 'Low',
       });
 
-      const res = await axios.get('http://localhost:5000/api/borrowers');
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/borrowers`);
       setBorrowers(res.data);
     } catch (err) {
       console.error(err);
@@ -93,7 +93,7 @@ const Borrowers = () => {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/borrowers')
+    axios.get(`${import.meta.env.VITE_API_URL}/api/borrowers`)
       .then((res) => {
         setBorrowers(res.data)
       })

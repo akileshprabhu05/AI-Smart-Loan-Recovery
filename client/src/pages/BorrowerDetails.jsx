@@ -81,7 +81,7 @@ const BorrowerDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/borrowers/${id}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/api/borrowers/${id}`)
       .then((res) => {
         setBorrower(res.data);
         setLoading(false);
@@ -106,7 +106,7 @@ const BorrowerDetails = () => {
     
     const dueInDays = calculateDueInDays(borrower.dueDate);
 
-    axios.post('http://127.0.0.1:5000/predict', {
+    axios.post(`${import.meta.env.VITE_ML_API_URL}/predict`, {
       loan_amount: borrower.loanAmount,
       due_in_days: dueInDays,
       risk: borrower.risk,

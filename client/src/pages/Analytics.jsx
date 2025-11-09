@@ -15,7 +15,7 @@ const Analytics = () => {
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/borrowers/analytics');
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/borrowers/analytics`);
         setLoanData(res.data.loanData);
         setStrategyData(res.data.strategyData);
       } catch (err) {
